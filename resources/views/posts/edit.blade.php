@@ -22,11 +22,11 @@
                     @method('PATCH')
                     <div class="mb-3">
                         <label for="title" class="form-label">title</label>
-                        <input type="text" name="title" class="form-control" id="title" value="{{ $post->title }}">
+                        <input type="text" name="title" class="form-control" id="title" value="{{ old('title', $post->title) }}">
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">content</label>
-                        <textarea name="content" id="content" class="form-control" cols="30" rows="7">{{ $post->content }}</textarea>
+                        <textarea name="content" id="content" class="form-control" cols="30" rows="7">{{ old('content', $post->content) }}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
