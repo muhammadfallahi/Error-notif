@@ -12,7 +12,7 @@
                 <h5 class="card-header">{{ $post->user->name }}</h5>
                 <div class="card-body">
                   <h5 class="card-title">{{ $post->title }}</h5>
-                  <p class="card-text">{{ $post->content }}</p>
+                  <p class="card-text">{{ Str::limit($post->content, 50, $end='...') }}</p>
                   <div class="d-flex">
                   <a href="{{ route('post.show', [$post]) }}" class="btn btn-primary ml-2">view</a>
                   <a href="{{ route('post.edit', [$post]) }}" class="btn btn-warning ml-2">edit</a>
