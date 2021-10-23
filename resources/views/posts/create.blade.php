@@ -1,18 +1,31 @@
 @extends('layouts.app')
 @section('content')
 
+
     <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
+                @if ($errors->any()) 
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+                @if (session('message'))
+                    <div class="alert alert-success" role="alert">{{ session('message') }}</div>
+                @endif
                 <form action="{{ route('post.store') }}" method="post">
                     @csrf
                     <div class="mb-3">
                         <label for="title" class="form-label">title</label>
-                        <input type="title" class="form-control" id="title" >
+                        <input type="text" name="title" class="form-control" id="title">
                     </div>
                     <div class="mb-3">
                         <label for="content" class="form-label">content</label>
-                        <input type="content" class="form-control" id="content">
+                        <textarea name="content" id="content" class="form-control" cols="30" rows="7"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
