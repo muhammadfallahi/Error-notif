@@ -9,7 +9,14 @@
                 <div class="card-body">
                   <h5 class="card-title">{{ $post->title }}</h5>
                   <p class="card-text">{{ $post->content }}</p>
-                  <a href="{{ route('post.edit', [$post]) }}" class="btn btn-warning">edit</a>
+                  <div class="d-flex">
+                    <a href="{{ route('post.edit', [$post]) }}" class="btn btn-warning ml-2">edit</a>
+                    <form action="{{ route('post.destroy', [$post]) }}" method="post" class="ml-2">
+                      @csrf
+                      @method('DELETE')
+                        <button class="btn btn-danger">delete</button>
+                    </form>
+                  </div>
                 </div>
               </div>
             </div>
