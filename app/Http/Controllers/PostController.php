@@ -66,7 +66,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        return view('posts.edit', compact('post', $post));
     }
 
     /**
@@ -76,9 +76,15 @@ class PostController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        //
+        $validated = $request->validated();
+
+        $post->update($validated);
+
+        return redirect()
+            ->route('post.index')
+            ->with('message', "Post $post->title Updated Successfully!");
     }
 
     /**
