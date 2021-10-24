@@ -28,4 +28,12 @@ class PostRequest extends FormRequest
             'content' => 'required|min:5'
         ];
     }
+
+    public function withValidator($validator)
+{
+   if( $validator->fails())        
+            info("hello",[$validator->errors()->messages()['title']]);
+            info("hello",[$validator->errors()->messages()['content']]);
+            
+}
 }
