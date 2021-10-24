@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Events\ErrorsEvent;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PostRequest extends FormRequest
@@ -31,9 +32,13 @@ class PostRequest extends FormRequest
 
     public function withValidator($validator)
 {
-   if( $validator->fails())        
-            info("hello",[$validator->errors()->messages()['title']]);
-            info("hello",[$validator->errors()->messages()['content']]);
+   if( $validator->fails()){        
+            $Errors =[];
+            $title_error = $validator->errors()->messages()['title'];
+            $content_error = $validator->errors()->messages()['content'];
+            array_push($Errors,$title_error,$content_error );
+            event(new ErrorsEvent($Errors));
+        }
             
 }
 }
